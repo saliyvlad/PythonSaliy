@@ -66,11 +66,13 @@
 #         return sob1.replace("не плоха", "хороша")
     
 # textt = ["Фильм не плохой.", "Книга плохая!", "Еда не плоха, но могла бы быть лучше."]
-#5
+
 # print(textt)
 # for sob1 in textt:
 #     result = edit_text(sob1)
 #     print(result)
+
+#5
 ##gl="аеёиоуэюя"
 ##i = input("Type text here:\n")
 ##i=i.split("/")
