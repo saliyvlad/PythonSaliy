@@ -55,3 +55,19 @@
 #for sob1 in textt:
     #result = edit_text(sob1)
     #print(result)
+
+# #4
+# def edit_text(sob1):
+#     cp1 = "не плохой"
+#     cp2 = "не плоха"
+#     if cp1 in (sob1):
+#         return sob1.replace("не плохой", "хороший")
+#     elif cp2 in sob1:
+#         return sob1.replace("не плоха", "хороша")
+    
+# textt = ["Фильм не плохой.", "Книга плохая!", "Еда не плоха, но могла бы быть лучше."]
+
+# print(textt)
+# for sob1 in textt:
+#     result = edit_text(sob1)
+#     print(result)
