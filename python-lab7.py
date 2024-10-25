@@ -100,29 +100,29 @@
 #    print("Ошибка, отсуствует символ #")
 
 #7
-##import random as r
-##
-##options=[]
-##
-##upLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-##lowLetters=upLetters.lower()
-##digits="0123456789"
-##SpS="!@#$%^&*_-+="
-##length = int(input("input length:\n"))
-##
-##options.append(input("capital needed? y/n:\n"))
-##options.append(input("lower needed? y/n:\n"))
-##options.append(input("digits needed? y/n:\n"))
-##options.append(input("special symbols needed? y/n:\n"))
-##
-##pas =""
-##
-##for x in range(len(options)):
-##    if options[x].lower() in ["y","yes"]:
-##        options[x]=1
-##    else:
-##        options[x]=0
-##total= upLetters*options[0]+lowLetters*options[1]+digits*options[2]+SpS*options[3]
-##for i in range(length):
-##    pas += r.choice(total)
-##print(pas)
+# import random as r
+
+# options=[]
+
+# upLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+# lowLetters=upLetters.lower()
+# digits="0123456789"
+# SpS="!@#$%^&*_-+="
+# length = int(input("введите длину:\n"))
+
+# options.append(input("Нужны ли заглавные буквы? y/n:\n"))
+# options.append(input("нужны ли строчные буквы? y/n:\n"))
+# options.append(input("нужны ли цифры? y/n:\n"))
+# options.append(input("нужны ли специальные символы? y/n:\n"))
+
+# pas =""
+
+# for x in range(len(options)):
+#    if options[x].lower() in ["y","yes"]:
+#        options[x]=1
+#    else:
+#        options[x]=0
+# total= upLetters*options[0]+lowLetters*options[1]+digits*options[2]+SpS*options[3]
+# for i in range(length):
+#    pas += r.choice(total)
+# print(pas)
