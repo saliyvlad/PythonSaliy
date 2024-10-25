@@ -126,3 +126,16 @@
 # for i in range(length):
 #    pas += r.choice(total)
 # print(pas)
+#8
+i = input("Type text here:\n")
+a=i.split("-")[0]
+b=i.split("-")[1]
+score =b.split(" ")[1]
+b=b.replace(score,"")
+if score.split(":")[0]>score.split(":")[1]:
+    print(a)
+else:
+    if score.split(":")[0]==score.split(":")[1]:
+        print("Ничья")
+    else:
+        print(b)
