@@ -90,3 +90,10 @@
 ##        print("Не хокку((( должно быть 3 строки")
 ##    else:
 ##        print("Не хокку(((")
+#6
+##msg = input("input ponkripted message:\n ")
+##ans = msg[0:-1:2]+msg[1:-1:2][::-1]
+##if (msg[-1]=="#") and (msg[:-2].isalpha()):
+##    print("DEPONKED MESSAGE:", ans)
+##else:
+##    print("NEPONOVOE MESSAGE")
