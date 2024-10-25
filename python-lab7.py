@@ -84,3 +84,9 @@
 ##            counter+=1
 ##    m.append(counter)
 ##    counter=0
+##if m==[5,7,5]: print("Хокку")
+##else:
+##    if len(i)!=3:
+##        print("Не хокку((( должно быть 3 строки")
+##    else:
+##        print("Не хокку(((")
