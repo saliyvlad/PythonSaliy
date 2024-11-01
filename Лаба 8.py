@@ -145,3 +145,18 @@
 #         print(f"{number}: Корректный номер")
 #     else:
         # print(f"{number}: Некорректный номер")
+
+#8
+# Входные данные
+#n = 3
+#words = ["word", "localization", "internationalization"]
+
+## Функция для преобразования слова в аббревиатуру
+#def abbreviate(word):
+#    if len(word) > 10:
+#        return f"{word[0]}{len(word) - 2}{word[-1]}"
+#    return word
+
+## Применяем функцию к каждому слову и выводим результат
+#result = [abbreviate(word) for word in words]
+#print(result)
