@@ -1,3 +1,127 @@
+Реши на питоне без библиотек
+preview
+def luhn_algorithm(card_number):
+    def digits_of(n):
+        return [int(d) for d in str(n)]
+    
+    digits = digits_of(card_number)
+    odd_digits = digits[-1::-2]
+    even_digits = digits[-2::-2]
+    
+    checksum = sum(odd_digits)
+    
+    for d in even_digits:
+        checksum += sum(digits_of(d * 2))
+    
+    return checksum % 10 == 0
+
+# Входные данные
+card_numbers = [
+    "4276440013361511",
+    "4276440013361512",
+    "42761336512"
+]
+
+# Вывод результатов
+for number in card_numbers:
+    is_valid = luhn_algorithm(number)
+    print(f"{number}: {'Корректный номер' if is_valid else 'Некорректный номер'}")
+Этот код проверяет номера карт по алгоритму Луна и выдает, корректен ли каждый номер.
+
+GPT-4o
+Исправь код для корректного решения
+preview
+Вот исправленный код для проверки номера банковской карты по алгоритму Луна:
+
+def validate_card_number(card_number):
+    # Переводим номер карты в список чисел
+    digits = [int(d) for d in str(card_number)]
+    
+    # Удваиваем каждую вторую цифру с конца и вычитаем 9, если результат больше 9
+    for i in range(len(digits) - 2, -1, -2):
+        digits[i] *= 2
+        if digits[i] > 9:
+            digits[i] -= 9
+    
+    # Суммируем все цифры
+    total_sum = sum(digits)
+    
+    # Проверяем, делится ли сумма на 10
+    return total_sum % 10 == 0
+
+# Примеры проверки
+card_numbers = [
+    "4276440013361511",
+    "4276440013361512",
+    "42761336512"
+]
+
+for number in card_numbers:
+    if validate_card_number(number):
+        print(f"{number}: Корректный номер")
+    else:
+        print(f"{number}: Некорректный номер")
+Этот код проверяет номер карты и выводит, является ли он корректным согласно алгоритму Луна.
+
+GPT-4o
+Исправь код : def luhn_algorithm(card_number):
+    def digits_of(n):
+        return [int(d) for d in str(n)]
+    
+    digits = digits_of(card_number)
+    odd_digits = digits[-1::-2]
+    even_digits = digits[-2::-2]
+    
+    checksum = sum(odd_digits)
+    
+    for d in even_digits:
+        checksum += sum(digits_of(d * 2))
+    
+    return checksum % 10 == 0
+
+# Входные данные
+card_numbers = [
+    "4276440013361511",
+    "4276440013361512",
+    "42761336512"
+]
+
+# Вывод результатов
+for number in card_numbers:
+    is_valid = luhn_algorithm(number)
+    print(f"{number}: {'Корректный номер' if is_valid else 'Некорректный номер'}")
+preview
+The provided code for the Luhn algorithm is mostly correct but needs a small adjustment to handle non-numeric card numbers. I'll fix it for you:
+
+def luhn_algorithm(card_number):
+    def digits_of(n):
+        return [int(d) for d in str(n)]
+    
+    digits = digits_of(card_number)
+    odd_digits = digits[-1::-2]
+    even_digits = digits[-2::-2]
+    
+    checksum = sum(odd_digits)
+    
+    for d in even_digits:
+        checksum += sum(digits_of(d * 2))
+    
+    return checksum % 10 == 0
+
+# Input data
+card_numbers = [
+    "4276440013361511",
+    "4276440013361512",
+    "42761336512"
+]
+
+# Output results
+for number in card_numbers:
+    if number.isdigit():
+        is_valid = luhn_algorithm(number)
+        print(f"{number}: {'Корректный номер' if is_valid else 'Некорректный номер'}")
+    else:
+        print(f"{number}: Некорректный номер")
 # #1
 # # Входные данные
 # input_data = ['1', 'a', '3', '4', 'b', '6']
