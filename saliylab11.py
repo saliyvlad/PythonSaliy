@@ -1,25 +1,14 @@
 #1
-alph1 = ".,?!:"
-alph2 = "abc"
-alph3 = "def"
-alph4 = "ghi"
-alph5 = "jkl"
-alph6 = "mno"
-alph7 = "pqrs"
-alph8 = "tuv"
-alph9 = "wxyz"
-alph0 = " "
-
-dictionary = {alph1:'1',
-              alph2:'2',
-              alph3:'3',
-              alph4:'4',
-              alph5:'5',
-              alph6:'6',
-              alph7:'7',
-              alph8:'8',
-              alph9:'9',
-              alph0:'0',}
+dictionary = {".,?!:":'1',
+              "abc":'2',
+              "def":'3',
+              "ghi":'4',
+              "jkl":'5',
+              "mno":'6',
+              "pqrs":'7',
+              "tuv":'8',
+              "wxyz":'9',
+              " ":'0',}
 # Hello, World!
 word = "Hello, World!" #str(input("Введите сообщение:\n"))
 
