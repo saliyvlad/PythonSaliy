@@ -85,3 +85,46 @@
 
 # # Закрываем окно
 # window.close()
+
+
+# # 5
+# import PySimpleGUI as sg
+
+# # Словарь, содержащий соответствие между буквами и очками
+# letter_scores = {"aeilnorstu":'1',
+#               "dg":'2',
+#               "bcmp":'3',
+#               "fhvwy":'4',
+#               "k":'5',
+#               "jx":'8',
+#               "qz":'10',}
+
+# # Определяем тему оформления
+# sg.theme('LightGreen')
+
+# # Задаем макет интерфейса
+# layout = [
+#     [sg.Text('Введите слово:'), sg.InputText(key='word')],
+#     [sg.Button('Расчитать очки'), sg.Button('Выход')],
+#     [sg.Text('Количество очков:'), sg.Text('', key='score')],
+# ]
+
+# # Создаем окно
+# window = sg.Window('Расчет очков в Эрудите', layout)
+
+# # Основной цикл программы
+# while True:
+#     event, values = window.read()
+#     count = 0
+#     if event == sg.WINDOW_CLOSED or event == 'Выход':
+#         break
+#     elif event == 'Расчитать очки':
+#         word = values['word'].lower()  # Приводим к нижнему регистру
+#         for i in word.lower():
+#             for j,k in letter_scores.items():
+#                 if i in j:
+#                     count += int(k)  # Считаем очки
+#         window['score'].update(count)
+
+# # Закрываем окно
+# window.close()
