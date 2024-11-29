@@ -44,12 +44,14 @@
 #     for k in j:
 #         print(k,"@", i,sep="")
 
+
+
 # 4
 # import PySimpleGUI as mp
 # import random
 
 # # Определяем тему оформления
-# mp.theme('LightBlue')
+# mp.theme('Dark')
 
 # # Задаем макет интерфейса
 # layout = [
@@ -57,7 +59,7 @@
 #     [mp.Text('Введите верхнюю границу:'), mp.InputText(key='upper_bound')],
 #     [mp.Text('Случайное число:'), mp.InputText(key='random_number', disabled=True)],
 #     [mp.Button('Сгенерировать')],
-#     [mp.Image(filename='C:/Users/saliy_03jey6u/Desktop/3de9c7cb6baa455bbee4e4f64b4cbe10.jpg')]  # Укажите путь к вашему изображению
+#     # [mp.Image(filename='C:/Users/saliy_03jey6u/Desktop/3de9c7cb6baa455bbee4e4f64b4cbe10.jpg')]  # Укажите путь к вашему изображению
 # ]
 
 # # Создаем окно
@@ -83,4 +85,3 @@
 
 # # Закрываем окно
 # window.close()
-            
