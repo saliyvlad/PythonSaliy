@@ -1,142 +1,163 @@
-##1
-#def remove_povtor_words(text):
-    #words = text.split()  # Разделяем текст на слова
-    #result = []           # Список для хранения уникальных слов
-    #pred_word = None  # Переменная для хранения предыдущего слова
+# # 1
+# n = int(input("Введите количество людей в экипаже: "))
 
-    #for word in words:
-        ## Проверяем, является ли текущее слово повтором предыдущего
-        #if word != pred_word:
-            #result.append(word)  
-        #pred_word = word     
-
-    ## Объединяем слова обратно в строку
-    #return ' '.join(result)
-
-
-#text1 = "Довольно распространённая ошибка ошибка это лишний повтор повтор слова слова Смешно не не правда ли Не нужно портить хор хоровод"
-#output_text = remove_povtor_words(text1)
-#print(output_text)
-
-
-##2
-#def perever(textt):
-    ## Разделяем фразу на слова
-    #words = textt.split()  
+# women_and_children = []
+# men = []
+# cap = []
+# for _ in range(n):
+#     line = input().strip()
+#     name, status = line.split()
     
-    ## Проверяем количество слов
-    #if len(words) != 2:
-        #return "Ошибка! Некорректное количество слов"
-    
-    ## Меняем местами слова
-    #return f"{words[1]} {words[0]}"
+#     if status in ['w', 'ch']:
+#         women_and_children.append(name)
+#     elif status == 'm':
+#         men.append(name)
+#     elif status == 'ca':
+#         cap.append(name)
+# evacuation_order = women_and_children + men + cap
+# print("=================")
+# for member in evacuation_order:
+#     print(member)
 
-## Входные данные
-#inputt = ["фразу перевернуть","тайна раскрыта","привет","привет всем присутствующим"]
+# # # 2
+# def is_dialog_valid(messages):
+#     balance = 0 
 
-## Обрабатываем каждую фразу
-#for php in inputt:
-    #result = perever(php)
-    #print(result)
-    
-##3
-#def edit_text(sob1):
-    ## Если сообщение пустое или состоит из одного символа, возвращаем его без изменений
-    #if len(sob1) <= 1:
-        #return sob1
-    
-    ## Используем метод join для вставки точки между символами
-    #return '.'.join(sob1)
+#     for message in messages:
+#         if message.lower() == 'q':
+#             balance += 1  
+#         elif message.lower() == 'a':
+#             balance -= 1  
+#         if balance < 0:
+#             return False
 
-## Входные данные
-#textt = ["Python", "h","", "hello world"]
+#     return balance == 0
 
-## Обрабатываем каждое сообщение
-#for sob1 in textt:
-    #result = edit_text(sob1)
-    #print(result)
+# n = int(input("Введите количество сообщений: "))
+# messages = input("Введите последовательность сообщений (Q для вопроса, A для ответа): ").strip()
 
-# #4
-# def edit_text(sob1):
-#     cp1 = "не плохой"
-#     cp2 = "не плоха"
-#     if cp1 in (sob1):
-#         return sob1.replace("не плохой", "хороший")
-#     elif cp2 in sob1:
-#         return sob1.replace("не плоха", "хороша")
-    
-# textt = ["Фильм не плохой.", "Книга плохая!", "Еда не плоха, но могла бы быть лучше."]
-
-# print(textt)
-# for sob1 in textt:
-#     result = edit_text(sob1)
-#     print(result)
-
-#5
-##gl="аеёиоуэюя"
-##i = input("Type text here:\n")
-##i=i.split("/")
-##counter=0
-##m=[]
-##for k in i:
-##    for n in range(len(k)):
-##        if k[n].lower() in gl:
-##            counter+=1
-##    m.append(counter)
-##    counter=0
-##if m==[5,7,5]: print("Хокку")
-##else:
-##    if len(i)!=3:
-##        print("Не хокку((( должно быть 3 строки")
-##    else:
-##        print("Не хокку(((")
-
-#6
-# msg = input("введите сообщение для расшифровки:\n ")
-# ans = msg[0:-1:2]+msg[1:-1:2][::-1]
-# if (msg[-1]=="#") and (msg[:-2].isalpha()):
-#    print("расшифрованное сообщение:", ans)
+# if is_dialog_valid(messages):
+#     print("+")
 # else:
-#    print("Ошибка, отсуствует символ #")
+#     print("-")
 
-#7
-# import random as r
+# #3
+# import PySimpleGUI as sg
 
-# options=[]
+# c_image = [[sg.Image("bio.png")]]
+# c_input = [[sg.Text("Введите количество бактерий:", font="Arial 20"), sg.Input(font="Arial 20", size=(5, 0), key="micro")],
+#            [sg.Text("K:", font="Arial 20"), sg.Input(font="Arial 20", size=(10, 0), key="k")],
+#            [sg.Text("B:", font="Arial 20"), sg.Input(font="Arial 20", size=(10, 0), key="b")],
+#            [sg.Text("Количество секунд:", font="Arial 20"), sg.Input(font="Arial 20", size=(5, 0), key="count")],
+#            [sg.Text("Результат:", font="Arial 20"), sg.Input(font="Arial 20", readonly=True, size=(10, 0), key="res")],
+#            [sg.Button("Рассчитать", font="Arial 20")]]
 
-# upLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-# lowLetters=upLetters.lower()
-# digits="0123456789"
-# SpS="!@#$%^&*_-+="
-# length = int(input("введите длину:\n"))
+# layout = [
+#     [sg.Column(c_image), sg.VSeperator(), sg.Column(c_input, justification='right')]
+# ]
+# window = sg.Window("Калькулятор бактерий", layout)
+# while True:
+#     event, value = window.read()
+#     if event == sg.WIN_CLOSED:
+#         break
+#     if event == "Рассчитать":
+#         try:
+#             micro = int(value["micro"]) 
+#             count = int(value["count"])  
+            
+#             k = int(value["k"])  
+#             b = int(value["b"])
+#             res = k*micro*count+b*micro*count
 
-# options.append(input("Нужны ли заглавные буквы? y/n:\n"))
-# options.append(input("нужны ли строчные буквы? y/n:\n"))
-# options.append(input("нужны ли цифры? y/n:\n"))
-# options.append(input("нужны ли специальные символы? y/n:\n"))
+#             window["res"].update(res)
 
-# pas =""
+#         except ValueError:
+#             sg.popup_error("Пожалуйста, введите корректные целые числа.")
+# window.close()
 
-# for x in range(len(options)):
-#    if options[x].lower() in ["y","yes"]:
-#        options[x]=1
-#    else:
-#        options[x]=0
-# total= upLetters*options[0]+lowLetters*options[1]+digits*options[2]+SpS*options[3]
-# for i in range(length):
-#    pas += r.choice(total)
-# print(pas)
+# 4
+import PySimpleGUI as sg
 
-#8
-# i = input("Введите результат матча:\n")
-# a=i.split("-")[0]
-# b=i.split("-")[1]
-# score =b.split(" ")[1]
-# b=b.replace(score,"")
-# if score.split(":")[0]>score.split(":")[1]:
-#     print(a)
-# else:
-#     if score.split(":")[0]==score.split(":")[1]:
-#         print("Ничья")
-#     else:
-#         print(b)
+def binary_to_reverse(binary_str):
+    binary_str = binary_str.zfill(8)
+    binary_list = list(binary_str)
+    reverse_code = ''.join('1' if bit == '0' or bit == 'b' else '0' for bit in binary_list)
+    return int(reverse_code) 
+
+def binary_to_dlc(binary_str):
+    binary_str = binary_str.zfill(8)
+    binary_list = list(binary_str)
+    reverse_code = ''.join('1' if bit == '0' or bit == 'b' else '0' for bit in binary_list)
+    dlc = bin(int(reverse_code, 2) + 1)[2:]
+    dlc = dlc.zfill(8)[-8:]
+    return int(dlc)
+
+layout = [
+    [sg.Text("Введите число от -128 до 127:", font="Arial 14"), sg.InputText(key="number")],
+    [sg.Button("Преобразовать", font="Arial 14")],
+    [sg.Text("Прямой код:", font="Arial 14"), sg.Text("", key="direct_code")],
+    [sg.Text("Обратный код:", font="Arial 14"), sg.Text("", key="reverse_code")],
+    [sg.Text("Дополнительный код:", font="Arial 14"), sg.Text("", key="dlc_code")],
+    [sg.Button("Выход", font="Arial 14")]
+]
+window = sg.Window("Кодирование чисел", layout)
+while True:
+    event, values = window.read()
+    if event in (sg.WIN_CLOSED, "Выход"):
+        break
+    if event == "Преобразовать":
+        try:
+            number = int(values["number"])
+            if number < -128 or number > 127:
+                sg.popup_error("Число должно быть в диапазоне от -128 до 127.")
+                continue
+            if number >= 0:
+                binary_str = str(bin(number)).zfill(8)
+                binary_list = list(binary_str)
+                direct_code = binary_list#''.join('0' if bit == '0' or bit == 'b' else '1' for bit in binary_list)
+                dlc_code = binary_to_dlc(str(bin(number)))
+                reverse_code = binary_to_reverse(str(bin(number)))
+            else:
+                binary_str = str(bin(number)).zfill(8)
+                binary_list = list(binary_str)
+                direct_code = binary_to_dlc(str(bin(number)))
+                dlc_code = binary_to_dlc(str(bin(number)))
+                reverse_code = binary_to_dlc(str(bin(number)))
+            window["direct_code"].update(direct_code)
+            window["dlc_code"].update(dlc_code)
+            window["reverse_code"].update(reverse_code)
+        except ValueError:
+            sg.popup_error("Пожалуйста, введите корректное целое число.")
+window.close()
+
+
+
+
+
+# def binary_to_reverse_and_twos_complement(binary_str):
+#     # Убедимся, что входное двоичное число имеет 8 знаков
+#     binary_str = binary_str.zfill(8)
+    
+#     # Преобразуем двоичную строку в список символов
+#     binary_list = list(binary_str)
+    
+#     # Обратный код (инверсия битов)
+#     reverse_code = ''.join('1' if bit == '0' else '0' for bit in binary_list)
+    
+#     # Дополнительный код (обратный код + 1)
+#     # Преобразуем обратный код в десятичное число, добавляем 1 и возвращаем в двоичный вид
+#     twos_complement = bin(int(reverse_code, 2) + 1)[2:]
+
+#     # Убедимся, что дополнительный код также имеет 8 знаков
+#     twos_complement = twos_complement.zfill(8)[-8:]
+
+#     return reverse_code, twos_complement
+
+# # Пример использования
+# print(bin(-127))
+# binary_input = '01111111'  # Входное двоичное число
+# reverse_code, twos_complement = binary_to_reverse_and_twos_complement(binary_input)
+
+# print(f"Двоичное число: {binary_input.zfill(8)}")
+# print(f"Обратный код: {reverse_code}")
+# print(f"Дополнительный код: {twos_complement}")
