@@ -172,3 +172,34 @@ reverse_code, twos_complement = binary_to_reverse_and_twos_complement(binary_inp
 print(f"Двоичное число: {binary_input}")
 print(f"Обратный код: {reverse_code}")
 print(f"Дополнительный код: {twos_complement}")
+
+
+
+
+
+def binary_to_reverse_and_twos_complement(binary_str):
+    # Убедимся, что входное двоичное число имеет 8 знаков
+    binary_str = binary_str.zfill(8)
+    
+    # Преобразуем двоичную строку в список символов
+    binary_list = list(binary_str)
+    
+    # Обратный код (инверсия битов)
+    reverse_code = ''.join('1' if bit == '0' else '0' for bit in binary_list)
+    
+    # Дополнительный код (обратный код + 1)
+    # Преобразуем обратный код в десятичное число, добавляем 1 и возвращаем в двоичный вид
+    twos_complement = bin(int(reverse_code, 2) + 1)[2:]
+
+    # Убедимся, что дополнительный код также имеет 8 знаков
+    twos_complement = twos_complement.zfill(8)[-8:]
+
+    return reverse_code, twos_complement
+
+# Пример использования
+binary_input = "1010"  # Входное двоичное число
+reverse_code, twos_complement = binary_to_reverse_and_twos_complement(binary_input)
+
+print(f"Двоичное число: {binary_input.zfill(8)}")
+print(f"Обратный код: {reverse_code}")
+print(f"Дополнительный код: {twos_complement}")
