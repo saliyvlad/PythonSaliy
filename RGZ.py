@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import random
+import os
 
 class TournamentApp:
     def __init__(self):
@@ -11,7 +12,7 @@ class TournamentApp:
         layout = [
             [sg.Button("Добавить команду"), sg.Button("Удалить команду")],
             [sg.Button("Экспорт в файл"), sg.Button("Импорт из файла")],
-            [sg.Button("Создать турнир"), sg.Button("Эмуляция турнира")],
+            [sg.Button("Создать турнир"), sg.Button("Симуляция турнира")],
             [sg.Listbox(values=self.teams, size=(30, 10), key="-TEAM_LIST-", enable_events=True)],
             [sg.Button("Выход")]
         ]
@@ -33,7 +34,7 @@ class TournamentApp:
                 self.import_from_file()
             elif event == "Создать турнир":
                 self.create_tournament()
-            elif event == "Эмуляция турнира":
+            elif event == "Симуляция турнира":
                 self.simulate_tournament()
 
         self.window.close()
@@ -47,9 +48,9 @@ class TournamentApp:
             sg.popup_error("Ошибка: такая команда уже есть или название пустое.")
 
     def remove_team(self):
-        selected_team = values["-TEAM_LIST-"]
+        selected_team = self.window["-TEAM_LIST-"].get()[0] if self.window["-TEAM_LIST-"].get() else None
         if selected_team:
-            self.teams.remove(selected_team[0])
+            self.teams.remove(selected_team)
             self.update_team_list()
         else:
             sg.popup_error("Ошибка: выберите команду для удаления.")
@@ -68,7 +69,7 @@ class TournamentApp:
             confirm = sg.popup_yes_no("Вы уверены, что хотите загрузить список команд из файла? Все несохраненные команды будут удалены.")
             if confirm == "Yes":
                 with open(file_name, 'r') as f:
-                    self.teams = [line.strip() for line in f.readlines()]
+                    self.teams = [line.strip() for line in f.readlines() if line.strip()]
                 self.update_team_list()
 
     def create_tournament(self):
@@ -77,8 +78,8 @@ class TournamentApp:
         
         try:
             num_teams = int(num_teams)
-            if num_teams > len(self.teams):
-                sg.popup_error("Ошибка: недостаточно команд для турнира.")
+            if num_teams > len(self.teams) or num_teams < 2 or num_teams % 2 != 0:
+                sg.popup_error("Ошибка: должно быть четное количество команд, больше одной.")
                 return
 
             matches = []
@@ -101,8 +102,8 @@ class TournamentApp:
         
         try:
             num_teams = int(num_teams)
-            if num_teams > len(self.teams):
-                sg.popup_error("Ошибка: недостаточно команд для турнира.")
+            if num_teams > len(self.teams) or num_teams < 2 or num_teams % 2 != 0:
+                sg.popup_error("Ошибка: должно быть четное количество команд, больше одной.")
                 return
 
             matches = []
