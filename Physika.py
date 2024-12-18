@@ -173,3 +173,126 @@ python damped_oscillation_plot.py
 Message ChatGPT
 
 Experience ChatGPT, fast and simple. Smart Chatbot with a huge knowledge base spanning all fields.
+
+
+
+
+
+
+
+
+
+
+
+import matplotlib.pyplot as plt
+import math
+
+def calculate_damped_oscillation(time, amplitude, frequency, damping_coefficient):
+    """
+    Вычисляет напряжение в контуре с затухающими колебаниями.
+
+    Args:
+        time (float): Время (секунды).
+        amplitude (float): Начальная амплитуда напряжения (вольты).
+        frequency (float): Частота колебаний (Гц).
+        damping_coefficient (float): Коэффициент затухания.
+
+    Returns:
+        float: Напряжение в контуре.
+    """
+
+    angular_frequency = 2 * math.pi * frequency
+    voltage = amplitude * math.exp(-damping_coefficient * time) * math.cos(angular_frequency * time)
+    return voltage
+
+def calculate_envelope(time, amplitude, damping_coefficient):
+   """
+    Вычисляет огибающую затухания.
+
+    Args:
+        time (float): Время (секунды).
+        amplitude (float): Начальная амплитуда напряжения (вольты).
+        damping_coefficient (float): Коэффициент затухания.
+
+    Returns:
+        float: Огибающая напряжения.
+    """
+   return amplitude * math.exp(-damping_coefficient * time)
+
+def plot_damped_oscillation_schematic(amplitude, frequency, damping_coefficient, duration=0.000002, num_points=500):
+    """
+    Строит схематичный график затухающих колебаний.
+
+    Args:
+        amplitude (float): Начальная амплитуда напряжения (вольты).
+        frequency (float): Частота колебаний (Гц).
+        damping_coefficient (float): Коэффициент затухания.
+        duration (float): Длительность отображаемого времени (секунды).
+        num_points (int): Количество точек для построения графика.
+    """
+    t_values = [duration * i / num_points for i in range(num_points)]
+    u_values = [calculate_damped_oscillation(t, amplitude, frequency, damping_coefficient) for t in t_values]
+    envelope_values = [calculate_envelope(t, amplitude, damping_coefficient) for t in t_values]
+    negative_envelope_values = [-x for x in envelope_values]
+
+    # Создание графика
+    plt.figure(figsize=(10, 6))
+    plt.plot(t_values, u_values, label='Затухающие колебания', color='blue', linewidth = 0.8)
+    plt.plot(t_values, envelope_values, label = 'Огибающая затухания', color = 'red', linestyle = '--')
+    plt.plot(t_values, negative_envelope_values,  color = 'red', linestyle = '--')
+
+
+    plt.xlabel('Время (с)')
+    plt.ylabel('Напряжение (В)')
+    plt.title('Схематичный график затухающих колебаний')
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+
+# Заданные параметры
+C = 2e-9  # Ф
+L = 0.15e-3  # Гн
+Um = 0.9  # В
+P = 1e-4  # Вт
+
+# Расчет частоты
+omega = 1 / math.sqrt(L * C)
+frequency = omega / (2 * math.pi)
+
+# Уменьшим частоту для более наглядного графика
+frequency = frequency/10
+# Расчет сопротивления
+R = Um**2 / (2 * P)
+
+# Расчет добротности
+Q = (omega * L) / R
+
+# Расчет коэффициента затухания
+damping_coefficient = omega / (2 * Q)
+
+plot_damped_oscillation_schematic(Um, frequency, damping_coefficient)
+Изменения в коде:
+
+plot_damped_oscillation_schematic: Функция была переименована для наглядности, а также теперь строит затухающие колебания и огибающую затухания.
+Ограничение по времени: Время отображения (параметр duration) было уменьшено до 0.000002, чтобы показать только начальную часть затухания.
+Упрощенный график: Добавлено построение огибающей затухания, используя calculate_envelope.
+Меньшая частота: Частота колебаний была уменьшена в 10 раз для лучшего визуального восприятия схемы затухания.
+Подписи: Добавлен заголовок к графику, уточнены подписи к осям и добавлена легенда.
+Как использовать:
+
+Сохраните код в файл с расширением .py, например, damped_oscillation_schematic.py.
+
+Убедитесь, что у вас установлена библиотека matplotlib.
+
+Запустите программу из командной строки:
+
+python damped_oscillation_schematic.py
+После запуска вы увидите схематичный график затухающих колебаний, где хорошо видна огибающая затухания, а колебания затухают за короткий промежуток времени.
+
+Этот код должен сделать график более похожим на то, что мы рисовали схематично, выделяя основные характеристики затухающих колебаний.
+
+ 
+Файл не выбран
+Message ChatGPT
+
+Experience ChatGPT, fast and simple. Smart Chatbot with a huge knowledge base spanning all fields.
