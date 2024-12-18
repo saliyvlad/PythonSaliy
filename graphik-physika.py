@@ -59,3 +59,29 @@ T2 = 4
 T3 = 5  # Вычисляется из условия задачи
 
 plot_pendulum_motion(T1, T2, T3)
+
+
+
+
+
+
+
+# import numpy as np
+# import matplotlib.pyplot as plt
+
+# # Параметры
+# Q_max = 280e-6  # Максимальный заряд (Кл)
+# C = 2e-6       # Емкость (Ф)
+# omega = 1195.99 # Угловая частота (рад/с)
+
+# # Время 
+# t = np.linspace(0, 0.005, 1000)  # от 0 до 5 мс
+# E = (Q_max * np.cos(omega * t))**2 / (2 * C)
+
+# # Построение графика
+# plt.plot(t, E)
+# plt.title('Электрическая энергия в колебательном контуре')
+# plt.xlabel('Время (с)')
+# plt.ylabel('Энергия (Дж)')
+# plt.grid(True)
+# plt.show()
