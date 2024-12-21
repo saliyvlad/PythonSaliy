@@ -1,87 +1,59 @@
-
-
 import matplotlib.pyplot as plt
 import math
 
-def calculate_displacement(time, period, amplitude):
-    """
-    Вычисляет смещение маятника в заданный момент времени.
-
-    Args:
-        time (float): Время (секунды).
-        period (float): Период колебаний (секунды).
-        amplitude (float): Амплитуда колебаний (произвольные единицы).
-    
-    Returns:
-        float: Смещение маятника.
-    """
-
-    angular_frequency = 2 * math.pi / period
-    displacement = amplitude * math.cos(angular_frequency * time)
-    return displacement
-
-def plot_pendulum_motion(T1, T2, T3, amplitude=0.1, duration=20, num_points=500):
-    """
-    Строит графики колебаний трех математических маятников.
-
-    Args:
-        T1 (float): Период первого маятника (секунды).
-        T2 (float): Период второго маятника (секунды).
-        T3 (float): Период третьего маятника (секунды).
-        amplitude (float): Амплитуда колебаний (в произвольных единицах).
-        duration (float): Длительность отображаемого времени (секунды).
-        num_points (int): Количество точек для построения графика.
-    """
-
-    t_values = [duration * i / num_points for i in range(num_points)] # Создаем временную шкалу
-    x1_values = [calculate_displacement(t, T1, amplitude) for t in t_values]
-    x2_values = [calculate_displacement(t, T2, amplitude) for t in t_values]
-    x3_values = [calculate_displacement(t, T3, amplitude) for t in t_values]
-
-    # Создание графиков
-    plt.figure(figsize=(10, 6))
-
-    # plt.plot(t_values, x1_values, label=f'Маятник 1 (T={T1} с)')
-    # plt.plot(t_values, x2_values, label=f'Маятник 2 (T={T2} с)')
-    plt.plot(t_values, x3_values, label=f'Маятник 3 (T={T3} с)')
-
-    plt.xlabel('Время (с)')
-    plt.ylabel('Смещение (произвольные единицы)')
-    plt.title('Колебания математического маятника')
-    plt.legend()
-    plt.grid(True)
-    plt.show()
-
-
-# Заданные периоды
+# Исходные данные
 T1 = 3
 T2 = 4
-T3 = 5  # Вычисляется из условия задачи
+T = math.sqrt(T1**2 + T2**2)  # период нового маятника
+theta0 = 0.1  # Амплитуда (в радианах)
+duration = 10  # Время моделирования (в секундах)
+num_points = 100  # Увеличиваем число точек для гладкости
 
-plot_pendulum_motion(T1, T2, T3)
+# Расчет циклической частоты для нового маятника
+omega = 2 * math.pi / T
+
+# Создание массива времени
+t = [duration * i / (num_points - 1) for i in range(num_points)]
+
+# Вычисление угловых смещений только для нового маятника
+theta = [theta0 * math.cos(omega * ti) for ti in t]
+
+# Создание графика
+plt.figure(figsize=(10, 6))
+plt.plot(t, theta, label=f'Новый маятник (T={T:.2f} с)', linestyle='-', color='black')
+plt.ylabel('Перемещение (рад)')  # Ось Y - перемещение
+plt.title('Схематичный график колебаний нового маятника')
 
 
+ax = plt.gca() # Получаем текущую систему координат
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['bottom'].set_linewidth(0.5)
+ax.spines['left'].set_linewidth(0.5)
+plt.tick_params(axis='both', which='both', length=0) # Убираем метки
+
+plt.legend()
 
 
+# Ось X - период с шагом T/4
+x_ticks = []
+x_labels = []
+max_time = max(t)
+for t_step in range(11):
+  current_x_tick = t_step * T/4
+  if current_x_tick <= max_time:
+    x_ticks.append(current_x_tick)
+    x_labels.append(f'{t_step}T/4')
+plt.xticks(x_ticks, x_labels)  # Установка делений и подписей на оси X
+plt.xlabel('Период колебаний')  # Ось X - период колебаний
 
 
+# Ось Y - деления с шагом 0.02
+min_y = min(theta)
+max_y = max(theta)
+y_ticks = [i * 0.02 for i in range(int(min_y / 0.02), int(max_y / 0.02) + 1)]
+plt.yticks(y_ticks)
 
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Параметры
-Q_max = 28e-8  # Максимальный заряд (Кл)
-C = 2e-6       # Емкость (Ф)
-omega = 143e4 # Угловая частота (рад/с)
-
-# Время 
-t = np.linspace(0, 0.005, 1000)  # от 0 до 5 мс
-E = (Q_max * np.cos(omega * t))**2 / (2 * C)
-
-# Построение графика
-plt.plot(t, E)
-plt.title('Электрическая энергия в колебательном контуре')
-plt.xlabel('Время (с)')
-plt.ylabel('Энергия (Дж)')
-plt.grid(True)
+# Добавляем сетку
+plt.grid(True, which='both', linestyle='--', linewidth=0.5, color='gray', alpha=0.5)
 plt.show()
